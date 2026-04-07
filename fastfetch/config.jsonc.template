@@ -1,0 +1,65 @@
+{
+  "modules": [
+    "title",
+    "separator",
+    {
+      "type": "os",
+      "key": "OS",
+      "format": "{name} {version}"
+    },
+    "kernel",
+    "shell",
+    "cpu",
+    "gpu",
+    {
+      "type": "memory",
+      "key": "Memory",
+      "percent": {
+        "type": 3,
+        "green": 30,
+        "yellow": 70
+      }
+    },
+    "battery"
+  ],
+  "logo": {
+    "type": "file",
+    "source": "THEME_ASCII_PATH",
+    "width": 1,
+    "height": 1,
+    "padding": {
+      "top": 0,
+      "left": 0
+    },
+    "color": {
+      "1": "THEME_ACCENT",
+      "2": "THEME_BTN"
+    }
+  },
+  "display": {
+    "separator": ": ",
+    "color": {
+      "keys": "THEME_BTN",
+      "title": "THEME_ACCENT"
+    },
+    "key": {
+      "width": 12,
+      "type": "string"
+    },
+    "bar": {
+      "width": 10,
+      "char": {
+        "elapsed": "-"
+      },
+      "charTotal": "-"
+    },
+    "percent": {
+      "type": 2,
+      "color": {
+        "green": "THEME_ACCENT",
+        "yellow": "#ffff00",
+        "red": "#ff1e00"
+      }
+    }
+  }
+}

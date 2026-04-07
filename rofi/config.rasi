@@ -1,0 +1,107 @@
+configuration {
+    modes: [ combi ];
+    combi-modes: [ window, drun, run ];
+    icon-theme: "Papirus-Dark";
+}
+* {
+    background: #1e1e1eb3;
+    text-color: #c5cddc;
+    border-color: #475b84;
+    selected-background: #475b84;
+    selected-text-color: #c5cddc;
+    font: "Departure Mono Nerd Font 11";
+}
+window {
+    background-color: #1e1e1ec4;
+    location: center;
+    border-radius: 24px;
+    border: 2px;
+    border-color: #475b84;
+    width: 900px;
+    padding: 12px;
+    children: [ horibox ];
+}
+horibox {
+    orientation: horizontal;
+    spacing: 12px;
+    children: [ wallpaperbox, mainbox ];
+}
+wallpaperbox {
+    background-image: url("/home/abhinavks/Pictures/Wallpapers/Wallpapers/AoT01.png", height);
+    background-color: #1e1e1ec4;
+    expand: false;
+    width: 280px;
+    border-radius: 16px;
+}
+mainbox {
+    background-color: transparent;
+    expand: true;
+    spacing: 8px;
+}
+inputbar {
+    background-color: #1e1e1ec4;
+    text-color: #c5cddc;
+    padding: 14px 18px;
+    border-radius: 16px;
+    border: 1px;
+    border-color: #475b84;
+}
+prompt {
+    background-color: transparent;
+    text-color: #c5cddc;
+}
+entry {
+    background-color: transparent;
+    text-color: #c5cddc;
+    placeholder: "Search";
+    placeholder-color: #1e1e1eb3;
+}
+listview {
+    background-color: transparent;
+    text-color: #c5cddc;
+    dynamic: true;
+    fixed-height: false;
+    lines: 12;
+    spacing: 4px;
+    padding: 4px 0px;
+}
+element {
+    orientation: horizontal;
+    children: [ element-icon, element-text ];
+    spacing: 10px;
+    padding: 10px 14px;
+    border-radius: 12px;
+    border: 0px;
+}
+element-text {
+    vertical-align: 0.5;
+    background-color: transparent;
+    text-color: #c5cddc;
+}
+element-icon {
+    background-color: transparent;
+    size: 1.2em;
+}
+element normal normal {
+    background-color: transparent;
+    text-color: #c5cddc;
+}
+element alternate normal {
+    background-color: transparent;
+    text-color: #c5cddc;
+}
+element selected normal {
+    background-color: #475b84;
+    text-color: #c5cddc;
+    border-radius: 12px;
+}
+element selected alternate {
+    background-color: #475b84;
+    text-color: #c5cddc;
+    border-radius: 12px;
+}
+scrollbar {
+    handle-color: #c5cddc;
+    border-radius: 8px;
+    padding: 2px;
+}

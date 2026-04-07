@@ -1,0 +1,85 @@
+{
+    "layer": "top",
+    "height": 21,
+    "position": "top",
+    "spacing": 14,
+    "modules-left":   ["custom/launcher", "tray", "group/full_player"],
+    "modules-center": ["hyprland/workspaces"],
+    "modules-right":  ["backlight", "clock", "battery"],
+    "custom/launcher": {
+        "format": "<span>󰣇</span>",
+        "on-click": "~/.config/rofi/powermenu.sh",
+        "tooltip": false
+    },
+    "tray": {
+        "icon-size": 21,
+        "spacing": 14
+    },
+    "cava": {
+        "cava_config": "/home/abhinavks/.config/cava/config",
+        "framerate": 60,
+        "bars": 28,
+        "format-icons": ["▁","▂","▃","▄","▅","▆","▇","█"],
+        "bar_delimiter": 0,
+        "waves": true,
+        "input_delay": 0
+    },
+    "pulseaudio": {
+        "format": "󰓃 {volume}%",
+        "format-muted": "󰓄 Muted",
+        "tooltip-format": "{volume}% — {desc}",
+        "on-click": "pavucontrol",
+        "on-scroll-up": "wpctl set-volume -l 1 @DEFAULT_AUDIO_SINK@ 2%+",
+        "on-scroll-down": "wpctl set-volume @DEFAULT_AUDIO_SINK@ 2%-",
+        "smooth-scrolling-threshold": 1
+    },
+    "group/full_player": {
+        "orientation": "horizontal",
+        "modules": ["pulseaudio", "cava"]
+    },
+    "hyprland/workspaces": {
+        "format": ""
+    },
+    "backlight": {
+        "format": "󰃟 {percent}%",
+        "tooltip-format": "{percent}% brightness\nScroll to adjust · Right-click for 20%",
+        "on-scroll-up":   "brightnessctl set 5%+",
+        "on-scroll-down": "brightnessctl set 5%-",
+        "on-click":       "bash -c 'brightnessctl set 100%'",
+        "on-click-right": "bash -c 'brightnessctl set 30%'"
+    },
+    "clock": {
+        "interval": 1,
+        "format": "{:%R   %d/%m/%Y}",
+        "tooltip": true,
+        "tooltip-format": "{calendar}",
+        "calendar": {
+            "mode": "month",
+            "mode-mon-col": 3,
+            "on-scroll": 1,
+            "format": {
+                "months":   "<span color='#1e1e1e'><b>{}</b></span>",
+                "days":     "<span color='#30394b'>{}</span>",
+                "weeks":    "<span color='#475b84'>W{}</span>",
+                "weekdays": "<span color='#55688d'><b>{}</b></span>",
+                "today":    "<span color='#c5cddc' bgcolor='#1e1e1e'><b>{}</b></span>"
+            }
+        },
+        "actions": {
+            "on-click-right": "mode",
+            "on-scroll-up":   "shift_up",
+            "on-scroll-down": "shift_down"
+        }
+    },
+    "battery": {
+        "states": {
+            "warning": 35,
+            "critical": 14
+        },
+        "format": "󰂑 {capacity}%",
+        "format-charging": "󰂄 {capacity}%",
+        "format-plugged":  "󰂄 {capacity}%",
+        "format-full":     "󰁹 100%",
+        "tooltip-format":  "{timeTo} — {capacity}%"
+    }
+}

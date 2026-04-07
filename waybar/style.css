@@ -1,0 +1,133 @@
+* {
+    border: none;
+    border-radius: 0px;
+    font-family: "Departure Mono Nerd Font", monospace;
+    font-style: normal;
+    min-height: 0;
+    color: #c5cddc;
+}
+window#waybar {
+    padding: 3px 0px;
+    background-color: rgba(6, 1, 1, 0.7);
+}
+/* ─────────────── LEFT ─────────────── */
+#custom-launcher {
+    color: #c5cddc;
+    font-weight: 600;
+    background-color: #475b84;
+    font-size: 14px;
+    margin: 3px 0px;
+    padding: 3px 7px;
+    border-radius: 10px;
+    min-height: 0;
+    transition: all 0.35s ease-in-out;
+}
+#custom-launcher:hover {
+    background-color: #1e1e1e;
+    color: #c5cddc;
+}
+#tray {
+    font-weight: 600;
+    background-color: #475b84;
+    font-size: 13px;
+    margin: 3px 0px;
+    padding: 3px 7px;
+    border-radius: 10px;
+    transition: all 0.35s ease-in-out;
+}
+#cava {
+    padding: 0 3px;
+}
+#pulseaudio {
+    padding: 0 3px;
+}
+#pulseaudio:hover {
+    background-color: #1e1e1e;
+    color: #c5cddc;
+}
+#full_player {
+    font-weight: 600;
+    background-color: #475b84;
+    font-size: 13px;
+    margin: 3px 0px;
+    padding: 3px 7px;
+    border-radius: 10px;
+    transition: all 0.35s ease-in-out;
+}
+#full_player:hover {
+    background-color: #1e1e1e;
+    color: #c5cddc;
+}
+#pulseaudio.muted {
+    color: #ff1e00;
+}
+/* ─────────────── CENTER ─────────────── */
+#workspaces {
+    background: #1e1e1e;
+    margin: 3px 3px;
+    padding: 3px 3px;
+    border-radius: 10px;
+    border: solid 0px #475b84;
+    font-weight: normal;
+    font-style: normal;
+}
+#workspaces button {
+    padding: 0px 3px;
+    margin: 0px 2px;
+    border-radius: 10px;
+    color: #475b84;
+    background-color: #475b84;
+    transition: all 0.35s ease-in-out;
+}
+#workspaces button.active {
+    color: #c5cddc;
+    background-color: #c5cddc;
+    border-radius: 5px;
+    min-width: 24px;
+    background-size: 400% 400%;
+    transition: all 0.35s ease-in-out;
+}
+/* ─────────────── RIGHT ─────────────── */
+#backlight,
+#battery,
+#clock {
+    font-weight: 600;
+    background-color: #475b84;
+    font-size: 13px;
+    margin: 3px 0px;
+    padding: 3px 7px;
+    border-radius: 10px;
+    transition: all 0.35s ease-in-out;
+}
+#backlight:hover,
+#clock:hover {
+    background-color: #1e1e1e;
+    color: #c5cddc;
+}
+#battery.warning {
+    color: #c5cddc;
+    background-color: #fbde69;
+}
+#battery.critical {
+    color: #1e1e1e;
+    background-color: #f55246;
+}
+#battery.charging {
+    color: #c5cddc;
+    background-color: #68d36c;
+    font-weight: bolder;
+}
+.modules-right { margin-right: 7px; }
+.modules-left  { margin-left: 7px; }
+/* ─────────────── CALENDAR TOOLTIP ─────────────── */
+tooltip {
+    background: #1e1e1e;
+    border: 1px solid #475b84;
+    border-radius: 10px;
+    padding: 4px;
+}
+tooltip label {
+    color: #c5cddc;
+    font-family: "Departure Mono Nerd Font", monospace;
+    font-size: 12px;
+}

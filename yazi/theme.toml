@@ -1,0 +1,93 @@
+# Auto-generated — do not edit
+
+# ── Manager ────────────────────────────────────────────────────────────────
+[manager]
+cwd = { fg = "#c5cddc", bold = true }
+
+hovered = { fg = "#0d0d0d", bg = "#c5cddc", bold = true }
+preview_hovered = { underline = true }
+
+find_keyword  = { fg = "#c5cddc", bold = true, underline = true }
+find_position = { fg = "#475b84", bold = true }
+
+marker_selected = { fg = "#0d0d0d", bg = "#475b84", bold = true }
+
+tab_active   = { fg = "#0d0d0d", bg = "#c5cddc", bold = true }
+tab_inactive = { fg = "#475b84", bg = "#1e1e1e" }
+
+border_symbol = "│"
+border_style  = { fg = "#475b84" }
+
+# ── Status ─────────────────────────────────────────────────────────────────
+[status]
+separator_open  = ""
+separator_close = ""
+
+mode_normal = { fg = "#0d0d0d", bg = "#c5cddc", bold = true }
+mode_select = { fg = "#0d0d0d", bg = "#475b84", bold = true }
+mode_unset  = { fg = "#0d0d0d", bg = "#1e1e1e", bold = true }
+
+progress_label  = { bold = true }
+progress_normal = { fg = "#c5cddc", bg = "#1e1e1e" }
+progress_error  = { fg = "#cc6666", bg = "#1e1e1e" }
+
+# ── Which (key hints) ──────────────────────────────────────────────────────
+[which]
+mask      = { bg = "#1e1e1e" }
+cand      = { fg = "#c5cddc", bold = true }
+desc      = { fg = "#475b84" }
+separator = "  "
+
+# ── Input ──────────────────────────────────────────────────────────────────
+[input]
+border   = { fg = "#c5cddc" }
+title    = { fg = "#c5cddc", bold = true }
+selected = { reversed = true }
+
+# ── Completion ─────────────────────────────────────────────────────────────
+[completion]
+border   = { fg = "#475b84" }
+active   = { fg = "#0d0d0d", bg = "#c5cddc", bold = true }
+inactive = { fg = "#475b84" }
+
+# ── Tasks ──────────────────────────────────────────────────────────────────
+[tasks]
+border  = { fg = "#c5cddc" }
+title   = { fg = "#c5cddc" }
+hovered = { underline = true }
+
+# ── Filetype colors ────────────────────────────────────────────────────────
+[filetype]
+rules = [
+    { mime = "image/*", fg = "#475b84" },
+    { mime = "video/*", fg = "#c5cddc" },
+    { mime = "audio/*", fg = "#c5cddc" },
+    { mime = "application/*", fg = "#c5cddc" },
+    { mime = "text/*",  fg = "#c5cddc" },
+]
+
+# ── Open rules ─────────────────────────────────────────────────────────────
+[open]
+rules = [
+    # Custom behavior
+    { name = "*.AppImage", use = "appimage" },
+    { name = "*.sh",       use = "shell" },
+    { name = "*.mp4",      use = "video" },
+
+    # Defaults
+    { mime = "text/*", use = "edit" },
+    { mime = "application/json", use = "edit" },
+    { mime = "*", use = "open" },
+]
+
+# ── Openers ────────────────────────────────────────────────────────────────
+[opener]
+appimage = [{ run = 'chmod +x "$1"; "$1"', orphan = true }]
+
+shell = [{ run = 'fish "$@"', block = true }]
+
+video = [{ run = 'mpv "$@"', orphan = true }]
+
+edit = [{ run = 'nvim "$@"', block = true }]
+
+open = [{ run = 'xdg-open "$@"' }]

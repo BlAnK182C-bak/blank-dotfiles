@@ -1,0 +1,133 @@
+* {
+    border: none;
+    border-radius: 0px;
+    font-family: "Departure Mono Nerd Font", monospace;
+    font-style: normal;
+    min-height: 0;
+    color: THEME_ACCENT;
+}
+window#waybar {
+    padding: 3px 0px;
+    background-color: rgba(6, 1, 1, 0.7);
+}
+/* ─────────────── LEFT ─────────────── */
+#custom-launcher {
+    color: THEME_ACCENT;
+    font-weight: 600;
+    background-color: THEME_BTN;
+    font-size: 14px;
+    margin: 3px 0px;
+    padding: 3px 7px;
+    border-radius: 10px;
+    min-height: 0;
+    transition: all 0.35s ease-in-out;
+}
+#custom-launcher:hover {
+    background-color: THEME_INACT;
+    color: THEME_ACCENT;
+}
+#tray {
+    font-weight: 600;
+    background-color: THEME_BTN;
+    font-size: 13px;
+    margin: 3px 0px;
+    padding: 3px 7px;
+    border-radius: 10px;
+    transition: all 0.35s ease-in-out;
+}
+#cava {
+    padding: 0 3px;
+}
+#pulseaudio {
+    padding: 0 3px;
+}
+#pulseaudio:hover {
+    background-color: THEME_INACT;
+    color: THEME_ACCENT;
+}
+#full_player {
+    font-weight: 600;
+    background-color: THEME_BTN;
+    font-size: 13px;
+    margin: 3px 0px;
+    padding: 3px 7px;
+    border-radius: 10px;
+    transition: all 0.35s ease-in-out;
+}
+#full_player:hover {
+    background-color: THEME_INACT;
+    color: THEME_ACCENT;
+}
+#pulseaudio.muted {
+    color: #ff1e00;
+}
+/* ─────────────── CENTER ─────────────── */
+#workspaces {
+    background: THEME_INACT;
+    margin: 3px 3px;
+    padding: 3px 3px;
+    border-radius: 10px;
+    border: solid 0px THEME_BTN;
+    font-weight: normal;
+    font-style: normal;
+}
+#workspaces button {
+    padding: 0px 3px;
+    margin: 0px 2px;
+    border-radius: 10px;
+    color: THEME_BTN;
+    background-color: THEME_BTN;
+    transition: all 0.35s ease-in-out;
+}
+#workspaces button.active {
+    color: THEME_ACCENT;
+    background-color: THEME_ACCENT;
+    border-radius: 5px;
+    min-width: 24px;
+    background-size: 400% 400%;
+    transition: all 0.35s ease-in-out;
+}
+/* ─────────────── RIGHT ─────────────── */
+#backlight,
+#battery,
+#clock {
+    font-weight: 600;
+    background-color: THEME_BTN;
+    font-size: 13px;
+    margin: 3px 0px;
+    padding: 3px 7px;
+    border-radius: 10px;
+    transition: all 0.35s ease-in-out;
+}
+#backlight:hover,
+#clock:hover {
+    background-color: THEME_INACT;
+    color: THEME_ACCENT;
+}
+#battery.warning {
+    color: THEME_ACCENT;
+    background-color: THEME_BATTERY_WARN;
+}
+#battery.critical {
+    color: THEME_INACT;
+    background-color: THEME_BATTERY_CRIT;
+}
+#battery.charging {
+    color: THEME_ACCENT;
+    background-color: THEME_BATTERY_CHARGE;
+    font-weight: bolder;
+}
+.modules-right { margin-right: 7px; }
+.modules-left  { margin-left: 7px; }
+/* ─────────────── CALENDAR TOOLTIP ─────────────── */
+tooltip {
+    background: THEME_INACT;
+    border: 1px solid THEME_BTN;
+    border-radius: 10px;
+    padding: 4px;
+}
+tooltip label {
+    color: THEME_ACCENT;
+    font-family: "Departure Mono Nerd Font", monospace;
+    font-size: 12px;
+}

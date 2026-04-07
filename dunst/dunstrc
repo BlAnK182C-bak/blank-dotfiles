@@ -1,0 +1,25 @@
+# Theme colors replaced by set-dynamic-theme.sh: #060101 (bg/frame), #FCECD7 (fg)
+
+[global]
+    frame_color = "#060101"
+    frame_width = 3
+    origin = top-right
+    offset = 10x50
+    font = Departure Mono Nerd Font 10
+    corner_radius = 8
+
+[urgency_low]
+    background = "#060101"
+    foreground = "#FCECD7"
+    timeout = 10
+
+[urgency_normal]
+    background = "#060101"
+    foreground = "#FCECD7"
+    timeout = 10
+
+[urgency_critical]
+    background = "#060101"
+    foreground = "#FCECD7"
+    frame_color = "#FCECD7"
+    timeout = 0

@@ -1,0 +1,93 @@
+# Auto-generated — do not edit
+
+# ── Manager ────────────────────────────────────────────────────────────────
+[manager]
+cwd = { fg = "THEME_ACCENT", bold = true }
+
+hovered = { fg = "THEME_BG", bg = "THEME_ACCENT", bold = true }
+preview_hovered = { underline = true }
+
+find_keyword  = { fg = "THEME_ACCENT", bold = true, underline = true }
+find_position = { fg = "THEME_BTN", bold = true }
+
+marker_selected = { fg = "THEME_BG", bg = "THEME_BTN", bold = true }
+
+tab_active   = { fg = "THEME_BG", bg = "THEME_ACCENT", bold = true }
+tab_inactive = { fg = "THEME_BTN", bg = "THEME_INACT" }
+
+border_symbol = "│"
+border_style  = { fg = "THEME_BTN" }
+
+# ── Status ─────────────────────────────────────────────────────────────────
+[status]
+separator_open  = ""
+separator_close = ""
+
+mode_normal = { fg = "THEME_BG", bg = "THEME_ACCENT", bold = true }
+mode_select = { fg = "THEME_BG", bg = "THEME_BTN", bold = true }
+mode_unset  = { fg = "THEME_BG", bg = "THEME_INACT", bold = true }
+
+progress_label  = { bold = true }
+progress_normal = { fg = "THEME_ACCENT", bg = "THEME_INACT" }
+progress_error  = { fg = "#cc6666", bg = "THEME_INACT" }
+
+# ── Which (key hints) ──────────────────────────────────────────────────────
+[which]
+mask      = { bg = "THEME_INACT" }
+cand      = { fg = "THEME_ACCENT", bold = true }
+desc      = { fg = "THEME_BTN" }
+separator = "  "
+
+# ── Input ──────────────────────────────────────────────────────────────────
+[input]
+border   = { fg = "THEME_ACCENT" }
+title    = { fg = "THEME_ACCENT", bold = true }
+selected = { reversed = true }
+
+# ── Completion ─────────────────────────────────────────────────────────────
+[completion]
+border   = { fg = "THEME_BTN" }
+active   = { fg = "THEME_BG", bg = "THEME_ACCENT", bold = true }
+inactive = { fg = "THEME_BTN" }
+
+# ── Tasks ──────────────────────────────────────────────────────────────────
+[tasks]
+border  = { fg = "THEME_ACCENT" }
+title   = { fg = "THEME_ACCENT" }
+hovered = { underline = true }
+
+# ── Filetype colors ────────────────────────────────────────────────────────
+[filetype]
+rules = [
+    { mime = "image/*", fg = "THEME_BTN" },
+    { mime = "video/*", fg = "THEME_ACCENT" },
+    { mime = "audio/*", fg = "THEME_ACCENT" },
+    { mime = "application/*", fg = "THEME_ACCENT" },
+    { mime = "text/*",  fg = "THEME_ACCENT" },
+]
+
+# ── Open rules ─────────────────────────────────────────────────────────────
+[open]
+rules = [
+    # Custom behavior
+    { name = "*.AppImage", use = "appimage" },
+    { name = "*.sh",       use = "shell" },
+    { name = "*.mp4",      use = "video" },
+
+    # Defaults
+    { mime = "text/*", use = "edit" },
+    { mime = "application/json", use = "edit" },
+    { mime = "*", use = "open" },
+]
+
+# ── Openers ────────────────────────────────────────────────────────────────
+[opener]
+appimage = [{ run = 'chmod +x "$1"; "$1"', orphan = true }]
+
+shell = [{ run = 'fish "$@"', block = true }]
+
+video = [{ run = 'mpv "$@"', orphan = true }]
+
+edit = [{ run = 'nvim "$@"', block = true }]
+
+open = [{ run = 'xdg-open "$@"' }]

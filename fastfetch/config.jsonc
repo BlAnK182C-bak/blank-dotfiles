@@ -1,0 +1,65 @@
+{
+  "modules": [
+    "title",
+    "separator",
+    {
+      "type": "os",
+      "key": "OS",
+      "format": "{name} {version}"
+    },
+    "kernel",
+    "shell",
+    "cpu",
+    "gpu",
+    {
+      "type": "memory",
+      "key": "Memory",
+      "percent": {
+        "type": 3,
+        "green": 30,
+        "yellow": 70
+      }
+    },
+    "battery"
+  ],
+  "logo": {
+    "type": "file",
+    "source": "/home/abhinavks/.config/fastfetch/ascii-arts/survey_corps.txt",
+    "width": 1,
+    "height": 1,
+    "padding": {
+      "top": 0,
+      "left": 0
+    },
+    "color": {
+      "1": "#c5cddc",
+      "2": "#475b84"
+    }
+  },
+  "display": {
+    "separator": ": ",
+    "color": {
+      "keys": "#475b84",
+      "title": "#c5cddc"
+    },
+    "key": {
+      "width": 12,
+      "type": "string"
+    },
+    "bar": {
+      "width": 10,
+      "char": {
+        "elapsed": "-"
+      },
+      "charTotal": "-"
+    },
+    "percent": {
+      "type": 2,
+      "color": {
+        "green": "#c5cddc",
+        "yellow": "#ffff00",
+        "red": "#ff1e00"
+      }
+    }
+  }
+}
