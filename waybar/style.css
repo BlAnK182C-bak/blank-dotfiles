@@ -4,7 +4,7 @@
     font-family: "Departure Mono Nerd Font", monospace;
     font-style: normal;
     min-height: 0;
-    color: #c5cddc;
+    color: #dcd4c5;
 }
 window#waybar {
     padding: 3px 0px;
@@ -12,9 +12,9 @@ window#waybar {
 }
 /* ─────────────── LEFT ─────────────── */
 #custom-launcher {
-    color: #c5cddc;
+    color: #dcd4c5;
     font-weight: 600;
-    background-color: #475b84;
+    background-color: #847047;
     font-size: 14px;
     margin: 3px 0px;
     padding: 3px 7px;
@@ -24,11 +24,11 @@ window#waybar {
 }
 #custom-launcher:hover {
     background-color: #1e1e1e;
-    color: #c5cddc;
+    color: #dcd4c5;
 }
 #tray {
     font-weight: 600;
-    background-color: #475b84;
+    background-color: #847047;
     font-size: 13px;
     margin: 3px 0px;
     padding: 3px 7px;
@@ -43,11 +43,11 @@ window#waybar {
 }
 #pulseaudio:hover {
     background-color: #1e1e1e;
-    color: #c5cddc;
+    color: #dcd4c5;
 }
 #full_player {
     font-weight: 600;
-    background-color: #475b84;
+    background-color: #847047;
     font-size: 13px;
     margin: 3px 0px;
     padding: 3px 7px;
@@ -56,7 +56,7 @@ window#waybar {
 }
 #full_player:hover {
     background-color: #1e1e1e;
-    color: #c5cddc;
+    color: #dcd4c5;
 }
 #pulseaudio.muted {
     color: #ff1e00;
@@ -67,7 +67,7 @@ window#waybar {
     margin: 3px 3px;
     padding: 3px 3px;
     border-radius: 10px;
-    border: solid 0px #475b84;
+    border: solid 0px #847047;
     font-weight: normal;
     font-style: normal;
 }
@@ -75,13 +75,13 @@ window#waybar {
     padding: 0px 3px;
     margin: 0px 2px;
     border-radius: 10px;
-    color: #475b84;
-    background-color: #475b84;
+    color: #847047;
+    background-color: #847047;
     transition: all 0.35s ease-in-out;
 }
 #workspaces button.active {
-    color: #c5cddc;
-    background-color: #c5cddc;
+    color: #dcd4c5;
+    background-color: #dcd4c5;
     border-radius: 5px;
     min-width: 24px;
     background-size: 400% 400%;
@@ -92,7 +92,7 @@ window#waybar {
 #battery,
 #clock {
     font-weight: 600;
-    background-color: #475b84;
+    background-color: #847047;
     font-size: 13px;
     margin: 3px 0px;
     padding: 3px 7px;
@@ -102,10 +102,10 @@ window#waybar {
 #backlight:hover,
 #clock:hover {
     background-color: #1e1e1e;
-    color: #c5cddc;
+    color: #dcd4c5;
 }
 #battery.warning {
-    color: #c5cddc;
+    color: #dcd4c5;
     background-color: #fbde69;
 }
 #battery.critical {
@@ -113,7 +113,7 @@ window#waybar {
     background-color: #f55246;
 }
 #battery.charging {
-    color: #c5cddc;
+    color: #dcd4c5;
     background-color: #68d36c;
     font-weight: bolder;
 }
@@ -122,12 +122,12 @@ window#waybar {
 /* ─────────────── CALENDAR TOOLTIP ─────────────── */
 tooltip {
     background: #1e1e1e;
-    border: 1px solid #475b84;
+    border: 1px solid #847047;
     border-radius: 10px;
     padding: 4px;
 }
 tooltip label {
-    color: #c5cddc;
+    color: #dcd4c5;
     font-family: "Departure Mono Nerd Font", monospace;
     font-size: 12px;
 }

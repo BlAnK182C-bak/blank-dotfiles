@@ -1,0 +1,55 @@
+# Window
+background-opacity = 0.8
+window-decoration = true
+title = "Ghostty@CachyOS"
+
+# Scrollback
+scrollback-limit = 10000
+
+# Font
+font-family = monospace
+font-size = 12
+
+# Cursor
+cursor-style = underline
+cursor-style-blink = false
+
+# Mouse
+mouse-hide-while-typing = true
+
+# Colors — injected by set-dynamic-theme.sh
+background = #1e1e1e
+foreground = #dcd4c5
+cursor-color = #dcd4c5
+cursor-text = #1e1e1e
+selection-background = #847047
+selection-foreground = #1e1e1e
+
+# Palette (normal colors 0–7)
+palette = 0=#1e1e1e
+palette = 1=BF616A
+palette = 2=A3BE8C
+palette = 3=#847047
+palette = 4=#847047
+palette = 5=#847047
+palette = 6=#dcd4c5
+palette = 7=#dcd4c5
+
+# Palette (bright colors 8–15)
+palette = 8=#847047
+palette = 9=BF616A
+palette = 10=A3BE8C
+palette = 11=#dcd4c5
+palette = 12=#dcd4c5
+palette = 13=#dcd4c5
+palette = 14=#dcd4c5
+palette = 15=#dcd4c5
+
+# Keybinds
+keybind = ctrl+shift+c=copy_to_clipboard
+keybind = ctrl+shift+v=paste_from_clipboard
+keybind = ctrl+shift+f=inspector:toggle
+keybind = shift+page_up=scroll_page_up
+keybind = shift+page_down=scroll_page_down
+keybind = shift+home=scroll_to_top
+keybind = shift+end=scroll_to_bottom

@@ -75,9 +75,7 @@ rules = [
     { name = "*.mp4",      use = "video" },
 
     # Defaults
-    { mime = "text/*", use = "edit" },
-    { mime = "application/json", use = "edit" },
-    { mime = "*", use = "open" },
+    { mime = "*", use = "edit" },
 ]
 
 # ── Openers ────────────────────────────────────────────────────────────────
@@ -86,7 +84,7 @@ appimage = [{ run = 'chmod +x "$1"; "$1"', orphan = true }]
 
 shell = [{ run = 'fish "$@"', block = true }]
 
-video = [{ run = 'mpv "$@"', orphan = true }]
+video = [{ run = 'vlc "$@"', orphan = true }]
 
 edit = [{ run = 'nvim "$@"', block = true }]
 

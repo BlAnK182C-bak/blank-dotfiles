@@ -24,7 +24,7 @@
   ],
   "logo": {
     "type": "file",
-    "source": "/home/abhinavks/.config/fastfetch/ascii-arts/survey_corps.txt",
+    "source": "/home/abhinavks/.config/fastfetch/ascii-arts/2b.txt",
     "width": 1,
     "height": 1,
     "padding": {
@@ -32,15 +32,15 @@
       "left": 0
     },
     "color": {
-      "1": "#c5cddc",
-      "2": "#475b84"
+      "1": "#dcd4c5",
+      "2": "#847047"
     }
   },
   "display": {
     "separator": ": ",
     "color": {
-      "keys": "#475b84",
-      "title": "#c5cddc"
+      "keys": "#847047",
+      "title": "#dcd4c5"
     },
     "key": {
       "width": 12,
@@ -56,7 +56,7 @@
     "percent": {
       "type": 2,
       "color": {
-        "green": "#c5cddc",
+        "green": "#dcd4c5",
         "yellow": "#ffff00",
         "red": "#ff1e00"
       }

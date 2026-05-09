@@ -6,6 +6,8 @@ source /usr/share/cachyos-fish-config/cachyos-config.fish
 #    # smth smth
 #end
 set -x HYPRSHOT_DIR $HOME/Pictures/Screenshots
+alias reset-master "git checkout master && git fetch origin && git reset --hard master"
+alias reset-main "git checkout main && git fetch origin && git reset --hard main"
 
 function y
     set tmp (mktemp -t yazi-cwd.XXXXXX)
