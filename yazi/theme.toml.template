@@ -65,27 +65,3 @@ rules = [
     { mime = "application/*", fg = "THEME_ACCENT" },
     { mime = "text/*",  fg = "THEME_ACCENT" },
 ]
-
-# ── Open rules ─────────────────────────────────────────────────────────────
-[open]
-rules = [
-    # Custom behavior
-    { name = "*.AppImage", use = "appimage" },
-    { name = "*.sh",       use = "shell" },
-    { name = "*.mp4",      use = "video" },
-
-    # Defaults
-    { mime = "*", use = "edit" },
-]
-
-# ── Openers ────────────────────────────────────────────────────────────────
-[opener]
-appimage = [{ run = 'chmod +x "$1"; "$1"', orphan = true }]
-
-shell = [{ run = 'fish "$@"', block = true }]
-
-video = [{ run = 'vlc "$@"', orphan = true }]
-
-edit = [{ run = 'nvim "$@"', block = true }]
-
-open = [{ run = 'xdg-open "$@"' }]

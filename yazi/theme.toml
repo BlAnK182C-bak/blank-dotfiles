@@ -2,90 +2,66 @@
 
 # ── Manager ────────────────────────────────────────────────────────────────
 [manager]
-cwd = { fg = "#dcd4c5", bold = true }
+cwd = { fg = "#dcc9c5", bold = true }
 
-hovered = { fg = "#0d0d0d", bg = "#dcd4c5", bold = true }
+hovered = { fg = "#0d0d0d", bg = "#dcc9c5", bold = true }
 preview_hovered = { underline = true }
 
-find_keyword  = { fg = "#dcd4c5", bold = true, underline = true }
-find_position = { fg = "#847047", bold = true }
+find_keyword  = { fg = "#dcc9c5", bold = true, underline = true }
+find_position = { fg = "#845147", bold = true }
 
-marker_selected = { fg = "#0d0d0d", bg = "#847047", bold = true }
+marker_selected = { fg = "#0d0d0d", bg = "#845147", bold = true }
 
-tab_active   = { fg = "#0d0d0d", bg = "#dcd4c5", bold = true }
-tab_inactive = { fg = "#847047", bg = "#1e1e1e" }
+tab_active   = { fg = "#0d0d0d", bg = "#dcc9c5", bold = true }
+tab_inactive = { fg = "#845147", bg = "#1e1e1e" }
 
 border_symbol = "│"
-border_style  = { fg = "#847047" }
+border_style  = { fg = "#845147" }
 
 # ── Status ─────────────────────────────────────────────────────────────────
 [status]
 separator_open  = ""
 separator_close = ""
 
-mode_normal = { fg = "#0d0d0d", bg = "#dcd4c5", bold = true }
-mode_select = { fg = "#0d0d0d", bg = "#847047", bold = true }
+mode_normal = { fg = "#0d0d0d", bg = "#dcc9c5", bold = true }
+mode_select = { fg = "#0d0d0d", bg = "#845147", bold = true }
 mode_unset  = { fg = "#0d0d0d", bg = "#1e1e1e", bold = true }
 
 progress_label  = { bold = true }
-progress_normal = { fg = "#dcd4c5", bg = "#1e1e1e" }
+progress_normal = { fg = "#dcc9c5", bg = "#1e1e1e" }
 progress_error  = { fg = "#cc6666", bg = "#1e1e1e" }
 
 # ── Which (key hints) ──────────────────────────────────────────────────────
 [which]
 mask      = { bg = "#1e1e1e" }
-cand      = { fg = "#dcd4c5", bold = true }
-desc      = { fg = "#847047" }
+cand      = { fg = "#dcc9c5", bold = true }
+desc      = { fg = "#845147" }
 separator = "  "
 
 # ── Input ──────────────────────────────────────────────────────────────────
 [input]
-border   = { fg = "#dcd4c5" }
-title    = { fg = "#dcd4c5", bold = true }
+border   = { fg = "#dcc9c5" }
+title    = { fg = "#dcc9c5", bold = true }
 selected = { reversed = true }
 
 # ── Completion ─────────────────────────────────────────────────────────────
 [completion]
-border   = { fg = "#847047" }
-active   = { fg = "#0d0d0d", bg = "#dcd4c5", bold = true }
-inactive = { fg = "#847047" }
+border   = { fg = "#845147" }
+active   = { fg = "#0d0d0d", bg = "#dcc9c5", bold = true }
+inactive = { fg = "#845147" }
 
 # ── Tasks ──────────────────────────────────────────────────────────────────
 [tasks]
-border  = { fg = "#dcd4c5" }
-title   = { fg = "#dcd4c5" }
+border  = { fg = "#dcc9c5" }
+title   = { fg = "#dcc9c5" }
 hovered = { underline = true }
 
 # ── Filetype colors ────────────────────────────────────────────────────────
 [filetype]
 rules = [
-    { mime = "image/*", fg = "#847047" },
-    { mime = "video/*", fg = "#dcd4c5" },
-    { mime = "audio/*", fg = "#dcd4c5" },
-    { mime = "application/*", fg = "#dcd4c5" },
-    { mime = "text/*",  fg = "#dcd4c5" },
+    { mime = "image/*", fg = "#845147" },
+    { mime = "video/*", fg = "#dcc9c5" },
+    { mime = "audio/*", fg = "#dcc9c5" },
+    { mime = "application/*", fg = "#dcc9c5" },
+    { mime = "text/*",  fg = "#dcc9c5" },
 ]
-
-# ── Open rules ─────────────────────────────────────────────────────────────
-[open]
-rules = [
-    # Custom behavior
-    { name = "*.AppImage", use = "appimage" },
-    { name = "*.sh",       use = "shell" },
-    { name = "*.mp4",      use = "video" },
-
-    # Defaults
-    { mime = "*", use = "edit" },
-]
-
-# ── Openers ────────────────────────────────────────────────────────────────
-[opener]
-appimage = [{ run = 'chmod +x "$1"; "$1"', orphan = true }]
-
-shell = [{ run = 'fish "$@"', block = true }]
-
-video = [{ run = 'vlc "$@"', orphan = true }]
-
-edit = [{ run = 'nvim "$@"', block = true }]
-
-open = [{ run = 'xdg-open "$@"' }]
