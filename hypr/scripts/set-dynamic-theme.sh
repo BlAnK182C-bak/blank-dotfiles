@@ -8,13 +8,13 @@ HYPR_DIR="$CONFIG_DIR/hypr"
 WAYBAR_DIR="$CONFIG_DIR/waybar"
 ROFI_DIR="$CONFIG_DIR/rofi"
 DUNST_DIR="$CONFIG_DIR/dunst"
-WALLPAPER_DIR="${WALLPAPER_DIR:-~/.config/wallpapers/}"
+WALLPAPER_DIR="${WALLPAPER_DIR:-$HOME/Pictures/Wallpapers/Wallpapers}"
 SCRIPT_DIR="$(dirname "$(realpath "$0")")"
 EXTRACT_PY="$SCRIPT_DIR/extract-theme-colors.py"
 
 if [[ ! -d "$WALLPAPER_DIR" ]]; then
-  echo "Wallpaper dir not found: $WALLPAPER_DIR" >&2
-  exit 1
+    echo "Wallpaper dir not found: $WALLPAPER_DIR" >&2
+    exit 1
 fi
 
 # ── Collect wallpapers ───────────────────────────────────────────────────────
@@ -24,34 +24,40 @@ shopt -u nullglob
 
 n=${#files[@]}
 if [[ $n -eq 0 ]]; then
-  echo "No images in $WALLPAPER_DIR" >&2
-  exit 1
+    echo "No images in $WALLPAPER_DIR" >&2
+    exit 1
 fi
 
-# ── Shuffle system (no repeats until cycle ends) ─────────────────────────────
-shuffle_file="/tmp/hyprpaper-wallpaper-shuffle"
-index_file="/tmp/hyprpaper-wallpaper-index"
+# ── Wallpaper selection ──────────────────────────────────────────────────────
 
-if [[ ! -f "$shuffle_file" ]]; then
-  printf "%s\n" "${files[@]}" | shuf >"$shuffle_file"
-  echo 0 >"$index_file"
+if [[ -n "$1" && -f "$1" ]]; then
+    wallpaper="$1"
+else
+    # ── Shuffle system (no repeats until cycle ends) ────────────────────────
+    shuffle_file="/tmp/hyprpaper-wallpaper-shuffle"
+    index_file="/tmp/hyprpaper-wallpaper-index"
+
+    if [[ ! -f "$shuffle_file" ]]; then
+        printf "%s\n" "${files[@]}" | shuf >"$shuffle_file"
+        echo 0 >"$index_file"
+    fi
+
+    mapfile -t shuffled <"$shuffle_file"
+    index=$(cat "$index_file")
+
+    if ((index >= ${#shuffled[@]})); then
+        printf "%s\n" "${files[@]}" | shuf >"$shuffle_file"
+        mapfile -t shuffled <"$shuffle_file"
+        index=0
+    fi
+
+    wallpaper="${shuffled[$index]}"
+    echo $((index + 1)) >"$index_file"
 fi
-
-mapfile -t shuffled <"$shuffle_file"
-index=$(cat "$index_file")
-
-if ((index >= ${#shuffled[@]})); then
-  printf "%s\n" "${files[@]}" | shuf >"$shuffle_file"
-  mapfile -t shuffled <"$shuffle_file"
-  index=0
-fi
-
-wallpaper="${shuffled[$index]}"
-echo $((index + 1)) >"$index_file"
 
 # ── Extract colors from wallpaper ────────────────────────────────────────────
 if [[ ! -x "$EXTRACT_PY" ]]; then
-  chmod +x "$EXTRACT_PY" 2>/dev/null || true
+    chmod +x "$EXTRACT_PY" 2>/dev/null || true
 fi
 
 out=$(python3 "$EXTRACT_PY" "$wallpaper") || exit 1
@@ -64,9 +70,9 @@ echo "DEBUG: avg_luminance=$avg_luminance"
 
 # ── Derive UI colors ──────────────────────────────────────────────────────────
 read -r btn_hover_hex cal_days_hex cal_wd_hex \
-  battery_warn_hex battery_crit_hex battery_charge_hex <<EOF
+    battery_warn_hex battery_crit_hex battery_charge_hex <<EOF
 $(
-    python3 - "$btn_hex" "$inact_hex" "$dom_hue" "$avg_luminance" <<'PYEOF'
+        python3 - "$btn_hex" "$inact_hex" "$dom_hue" "$avg_luminance" <<'PYEOF'
 import sys, colorsys
 
 def h2r(h):
@@ -113,7 +119,7 @@ battery_charge = hsl2hex(122, 0.55, charge_l)
 
 print(btn_hover, cal_days, cal_wd, battery_warn, battery_crit, battery_charge)
 PYEOF
-  )
+    )
 EOF
 
 # ── Wallpaper engine selection ────────────────────────────────────────────────
@@ -124,19 +130,19 @@ pkill -x hyprpaper 2>/dev/null || true
 pkill -x mpvpaper 2>/dev/null || true
 
 if [[ "$ext" == "gif" || "$ext" == "mp4" || "$ext" == "webm" ]]; then
-  mpvpaper -o "loop" '*' "$wallpaper" &
-  disown
+    mpvpaper -o "loop" '*' "$wallpaper" &
+    disown
 else
-  hyprpaper_conf="$HYPR_DIR/hyprpaper.conf"
-  cat >"$hyprpaper_conf" <<EOF
+    hyprpaper_conf="$HYPR_DIR/hyprpaper.conf"
+    cat >"$hyprpaper_conf" <<EOF
 wallpaper {
     monitor =
     path = $wallpaper
     fit_mode = cover
 }
 EOF
-  hyprpaper &
-  disown
+    hyprpaper &
+    disown
 fi
 
 # ── Hyprland borders ──────────────────────────────────────────────────────────
@@ -150,15 +156,15 @@ style_template="$WAYBAR_DIR/style.css.template"
 style_css="$WAYBAR_DIR/style.css"
 
 if [[ -f "$style_template" ]]; then
-  sed \
-    -e "s/THEME_ACCENT/#${accent_hex}/g" \
-    -e "s/THEME_INACT/#${inact_hex}/g" \
-    -e "s/THEME_BTN_HOVER/#${btn_hover_hex}/g" \
-    -e "s/THEME_BTN/#${btn_hex}/g" \
-    -e "s/THEME_BATTERY_WARN/#${battery_warn_hex}/g" \
-    -e "s/THEME_BATTERY_CRIT/#${battery_crit_hex}/g" \
-    -e "s/THEME_BATTERY_CHARGE/#${battery_charge_hex}/g" \
-    "$style_template" >"$style_css"
+    sed \
+        -e "s/THEME_ACCENT/#${accent_hex}/g" \
+        -e "s/THEME_INACT/#${inact_hex}/g" \
+        -e "s/THEME_BTN_HOVER/#${btn_hover_hex}/g" \
+        -e "s/THEME_BTN/#${btn_hex}/g" \
+        -e "s/THEME_BATTERY_WARN/#${battery_warn_hex}/g" \
+        -e "s/THEME_BATTERY_CRIT/#${battery_crit_hex}/g" \
+        -e "s/THEME_BATTERY_CHARGE/#${battery_charge_hex}/g" \
+        "$style_template" >"$style_css"
 fi
 
 # ── Waybar config ─────────────────────────────────────────────────────────────
@@ -166,14 +172,14 @@ config_template="$WAYBAR_DIR/config.jsonc.template"
 config_out="$WAYBAR_DIR/config.jsonc"
 
 if [[ -f "$config_template" ]]; then
-  sed \
-    -e "s/THEME_ACCENT/#${accent_hex}/g" \
-    -e "s/THEME_INACT/#${inact_hex}/g" \
-    -e "s/THEME_CAL_DAYS/#${cal_days_hex}/g" \
-    -e "s/THEME_CAL_WD/#${cal_wd_hex}/g" \
-    -e "s/THEME_BTN_HOVER/#${btn_hover_hex}/g" \
-    -e "s/THEME_BTN/#${btn_hex}/g" \
-    "$config_template" >"$config_out"
+    sed \
+        -e "s/THEME_ACCENT/#${accent_hex}/g" \
+        -e "s/THEME_INACT/#${inact_hex}/g" \
+        -e "s/THEME_CAL_DAYS/#${cal_days_hex}/g" \
+        -e "s/THEME_CAL_WD/#${cal_wd_hex}/g" \
+        -e "s/THEME_BTN_HOVER/#${btn_hover_hex}/g" \
+        -e "s/THEME_BTN/#${btn_hex}/g" \
+        "$config_template" >"$config_out"
 fi
 
 pkill -x waybar 2>/dev/null || true
@@ -185,15 +191,15 @@ rofi_template="$ROFI_DIR/config.rasi.template"
 rofi_config="$ROFI_DIR/config.rasi"
 
 if [[ -f "$rofi_template" ]]; then
-  cp "$rofi_template" "$rofi_config"
-  sed -i \
-    -e "s|THEME_INACTb3|#${inact_hex}b3|g" \
-    -e "s|THEME_INACTc4|#${inact_hex}c4|g" \
-    -e "s|THEME_INACT|#${inact_hex}|g" \
-    -e "s|THEME_ACCENT|#${accent_hex}|g" \
-    -e "s|THEME_BTN|#${btn_hex}|g" \
-    -e "s|THEME_WALLPAPER|${wallpaper}|g" \
-    "$rofi_config"
+    cp "$rofi_template" "$rofi_config"
+    sed -i \
+        -e "s|THEME_INACTb3|#${inact_hex}b3|g" \
+        -e "s|THEME_INACTc4|#${inact_hex}c4|g" \
+        -e "s|THEME_INACT|#${inact_hex}|g" \
+        -e "s|THEME_ACCENT|#${accent_hex}|g" \
+        -e "s|THEME_BTN|#${btn_hex}|g" \
+        -e "s|THEME_WALLPAPER|${wallpaper}|g" \
+        "$rofi_config"
 fi
 
 # ── Dunst ─────────────────────────────────────────────────────────────────────
@@ -201,15 +207,15 @@ dunst_template="$DUNST_DIR/dunstrc.template"
 dunst_config="$DUNST_DIR/dunstrc"
 
 if [[ -f "$dunst_template" ]]; then
-  mkdir -p "$DUNST_DIR"
-  sed \
-    -e "s/THEME_ACCENT/#${accent_hex}/g" \
-    -e "s/THEME_INACT/#${inact_hex}/g" \
-    -e "s/THEME_BTN/#${btn_hex}/g" \
-    "$dunst_template" >"$dunst_config"
-  pkill -x dunst 2>/dev/null || true
-  dunst &
-  disown
+    mkdir -p "$DUNST_DIR"
+    sed \
+        -e "s/THEME_ACCENT/#${accent_hex}/g" \
+        -e "s/THEME_INACT/#${inact_hex}/g" \
+        -e "s/THEME_BTN/#${btn_hex}/g" \
+        "$dunst_template" >"$dunst_config"
+    pkill -x dunst 2>/dev/null || true
+    dunst &
+    disown
 fi
 
 # ── ncspot ────────────────────────────────────────────────────────────────────
@@ -218,25 +224,12 @@ ncspot_template="$NCSPOT_DIR/config.toml.template"
 ncspot_config="$NCSPOT_DIR/config.toml"
 
 if [[ -f "$ncspot_template" ]]; then
-  sed \
-    -e "s/THEME_ACCENT/${accent_hex}/g" \
-    -e "s/THEME_INACT/${inact_hex}/g" \
-    -e "s/THEME_BTN/${btn_hex}/g" \
-    -e "s/THEME_BTN_HOVER/${btn_hover_hex}/g" \
-    "$ncspot_template" >"$ncspot_config"
-fi
-
-# ── Alacritty ─────────────────────────────────────────────────────────────────
-ALACRITTY_DIR="$CONFIG_DIR/alacritty"
-alacritty_template="$ALACRITTY_DIR/alacritty.toml.template"
-alacritty_config="$ALACRITTY_DIR/alacritty.toml"
-
-if [[ -f "$alacritty_template" ]]; then
-  sed \
-    -e "s/THEME_ACCENT/#${accent_hex}/g" \
-    -e "s/THEME_INACT/#${inact_hex}/g" \
-    -e "s/THEME_BTN/#${btn_hex}/g" \
-    "$alacritty_template" >"$alacritty_config"
+    sed \
+        -e "s/THEME_ACCENT/${accent_hex}/g" \
+        -e "s/THEME_INACT/${inact_hex}/g" \
+        -e "s/THEME_BTN/${btn_hex}/g" \
+        -e "s/THEME_BTN_HOVER/${btn_hover_hex}/g" \
+        "$ncspot_template" >"$ncspot_config"
 fi
 
 # ── Yazi ─────────────────────────────────────────────────────────────────────
@@ -245,14 +238,14 @@ yazi_template="$YAZI_DIR/theme.toml.template"
 yazi_theme="$YAZI_DIR/theme.toml"
 
 if [[ -f "$yazi_template" ]]; then
-  mkdir -p "$YAZI_DIR"
-  sed \
-    -e "s/THEME_ACCENT/#${accent_hex}/g" \
-    -e "s/THEME_INACT/#${inact_hex}/g" \
-    -e "s/THEME_BTN/#${btn_hex}/g" \
-    -e "s/THEME_BTN_HOVER/#${btn_hover_hex}/g" \
-    -e "s/THEME_BG/#${bg_hex}/g" \
-    "$yazi_template" >"$yazi_theme"
+    mkdir -p "$YAZI_DIR"
+    sed \
+        -e "s/THEME_ACCENT/#${accent_hex}/g" \
+        -e "s/THEME_INACT/#${inact_hex}/g" \
+        -e "s/THEME_BTN/#${btn_hex}/g" \
+        -e "s/THEME_BTN_HOVER/#${btn_hover_hex}/g" \
+        -e "s/THEME_BG/#${bg_hex}/g" \
+        "$yazi_template" >"$yazi_theme"
 fi
 
 # ── LazyVim dynamic theme ───────────────────────────────────────────────────
@@ -260,16 +253,16 @@ NVIM_TEMPLATE="$HOME/.config/nvim/lua/plugins/theme.lua.template"
 NVIM_OUT="$HOME/.config/nvim/lua/plugins/theme.lua"
 
 if [[ -f "$NVIM_TEMPLATE" ]]; then
-  # Ensure avg_luminance is passed as a number between 0 and 1
-  sed \
-    -e "s/{{AVG_LUMINANCE}}/${avg_luminance}/g" \
-    -e "s/{{ACCENT_HEX}}/${accent_hex}/g" \
-    -e "s/{{BG_HEX}}/${bg_hex}/g" \
-    -e "s/{{BTN_HOVER_HEX}}/${btn_hover_hex}/g" \
-    -e "s/{{INACT_HEX}}/${inact_hex}/g" \
-    "$NVIM_TEMPLATE" >"$NVIM_OUT"
+    # Ensure avg_luminance is passed as a number between 0 and 1
+    sed \
+        -e "s/{{AVG_LUMINANCE}}/${avg_luminance}/g" \
+        -e "s/{{ACCENT_HEX}}/${accent_hex}/g" \
+        -e "s/{{BG_HEX}}/${bg_hex}/g" \
+        -e "s/{{BTN_HOVER_HEX}}/${btn_hover_hex}/g" \
+        -e "s/{{INACT_HEX}}/${inact_hex}/g" \
+        "$NVIM_TEMPLATE" >"$NVIM_OUT"
 else
-  echo "Warning: NVIM template missing at $NVIM_TEMPLATE"
+    echo "Warning: NVIM template missing at $NVIM_TEMPLATE"
 fi
 
 # ── ASCII mapping for fastfetch ──────────────────────────────────────────────
@@ -299,11 +292,24 @@ FASTFETCH_TEMPLATE="$FASTFETCH_DIR/config.jsonc.template"
 FASTFETCH_CONFIG="$FASTFETCH_DIR/config.jsonc"
 
 if [[ -f "$FASTFETCH_TEMPLATE" ]]; then
-  sed \
-    -e "s|THEME_ASCII_PATH|${ascii_file}|g" \
-    -e "s|THEME_ACCENT|#${accent_hex}|g" \
-    -e "s|THEME_BTN|#${btn_hex}|g" \
-    "$FASTFETCH_TEMPLATE" >"$FASTFETCH_CONFIG"
+    sed \
+        -e "s|THEME_ASCII_PATH|${ascii_file}|g" \
+        -e "s|THEME_ACCENT|#${accent_hex}|g" \
+        -e "s|THEME_BTN|#${btn_hex}|g" \
+        "$FASTFETCH_TEMPLATE" >"$FASTFETCH_CONFIG"
+fi
+
+# ── Ghostty ──────────────────────────────────────────────────────────────────
+GHOSTTY_DIR="$CONFIG_DIR/ghostty"
+ghostty_template="$GHOSTTY_DIR/config.ghostty.template"
+ghostty_config="$GHOSTTY_DIR/config.ghostty"
+
+if [[ -f "$ghostty_template" ]]; then
+    sed \
+        -e "s/THEME_ACCENT/#${accent_hex}/g" \
+        -e "s/THEME_INACT/#${inact_hex}/g" \
+        -e "s/THEME_BTN/#${btn_hex}/g" \
+        "$ghostty_template" >"$ghostty_config"
 fi
 
 # ── Final debug output ───────────────────────────────────────────────────────
