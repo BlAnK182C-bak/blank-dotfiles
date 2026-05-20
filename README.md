@@ -17,5 +17,5 @@ Exhibit C: rofi for app browsing
 <br />
 
 Exhibit D: Lazyvim + ghostty
-<img width="2560" height="1440" alt="image" src="https://github.com/user-attachments/assets/c58d7ebd-240b-4e4e-b4cf-f1aec21ab497" />jj
+<img width="2560" height="1440" alt="image" src="https://github.com/user-attachments/assets/c58d7ebd-240b-4e4e-b4cf-f1aec21ab497" />
 <br />
