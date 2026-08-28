@@ -1,0 +1,76 @@
+$accent    = rgba(THEME_ACCENTee)
+$inactive  = rgba(THEME_INACTaa)
+$btn       = rgba(THEME_BTNee)
+$btn_hover = rgba(THEME_BTN_HOVERee)
+$bg        = rgba(THEME_BGee)
+
+background {
+    monitor =
+    path = THEME_WALLPAPER
+    blur_passes = 2
+    blur_size = 7
+    contrast = 0.9
+    brightness = 0.75
+    vibrancy = 0.14
+}
+
+general {
+    hide_cursor = true
+    grace = 0
+}
+
+input-field {
+    monitor =
+    size = 250, 55
+    outline_thickness = 3
+    dots_size = 0.26
+    dots_spacing = 0.3
+    dots_center = true
+    outer_color = $btn
+    inner_color = $bg
+    font_color = $accent
+    fade_on_empty = true
+    fade_timeout = 1000
+    placeholder_text = <i>Password...</i>
+    hide_input = false
+    check_color = $accent
+    fail_color = rgba(ff5c5cee)
+    fail_text = <i>$FAIL <b>($ATTEMPTS)</b></i>
+    capslock_color = rgba(ffb86cee)
+    position = 0, -60
+    halign = center
+    valign = center
+}
+
+label { # TIME
+    monitor =
+    text = cmd[update:1000] echo "$(date +"%H:%M")"
+    color = $accent
+    font_size = 90
+    font_family = Departure Mono Nerd Font
+    position = 0, 140
+    halign = center
+    valign = center
+}
+
+label { # DATE
+    monitor =
+    text = cmd[update:60000] echo "$(date +"%A, %d %B")"
+    color = $inactive
+    font_size = 20
+    font_family = Departure Mono Nerd Font
+    position = 0, 40
+    halign = center
+    valign = center
+}
+
+label { # USER
+    monitor =
+    text =    $USER
+    color = $accent
+    font_size = 16
+    font_family = Departure Mono Nerd Font
+    position = 0, -150
+    halign = center
+    valign = center
+}

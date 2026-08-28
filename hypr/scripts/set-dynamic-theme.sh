@@ -283,6 +283,7 @@ Portal*) ascii_file="$ASCII_DIR/portal.txt" ;;
 TokyoGhoul*) ascii_file="$ASCII_DIR/tg.txt" ;;
 VinlandSaga*) ascii_file="$ASCII_DIR/thorfinn.txt" ;;
 TLoZ*) ascii_file="$ASCII_DIR/triforce.txt" ;;
+CowboyBebop*) ascii_file="$ASCII_DIR/cowboy.txt" ;;
 *) ascii_file="$ASCII_DIR/cat.txt" ;;
 esac
 
@@ -310,6 +311,21 @@ if [[ -f "$ghostty_template" ]]; then
         -e "s/THEME_INACT/#${inact_hex}/g" \
         -e "s/THEME_BTN/#${btn_hex}/g" \
         "$ghostty_template" >"$ghostty_config"
+fi
+
+# ── Hyprlock ───────────────────────────────────────────────────────────────
+hyprlock_template="$HYPR_DIR/hyprlock.conf.template"
+hyprlock_config="$HYPR_DIR/hyprlock.conf"
+
+if [[ -f "$hyprlock_template" ]]; then
+    sed \
+        -e "s/THEME_ACCENT/${accent_hex}/g" \
+        -e "s/THEME_INACT/${inact_hex}/g" \
+        -e "s/THEME_BTN_HOVER/${btn_hover_hex}/g" \
+        -e "s/THEME_BTN/${btn_hex}/g" \
+        -e "s/THEME_BG/${bg_hex}/g" \
+        -e "s|THEME_WALLPAPER|${wallpaper}|g" \
+        "$hyprlock_template" >"$hyprlock_config"
 fi
 
 # ── Final debug output ───────────────────────────────────────────────────────

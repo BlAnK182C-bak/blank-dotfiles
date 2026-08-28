@@ -1,7 +1,7 @@
 # Window
 background-opacity = 0.8
-window-decoration = true
-title = "Ghostty@CachyOS"
+window-decoration = false
+title = "Ze Ghost of Ze Blinkus of ze blonkus"
 confirm-close-surface = false
 
 # Scrollback

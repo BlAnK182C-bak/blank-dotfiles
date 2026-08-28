@@ -4,7 +4,7 @@
     font-family: "Departure Mono Nerd Font", monospace;
     font-style: normal;
     min-height: 0;
-    color: #dcd4c5;
+    color: #c5d1dc;
 }
 window#waybar {
     padding: 3px 0px;
@@ -12,27 +12,27 @@ window#waybar {
 }
 /* ─────────────── LEFT ─────────────── */
 #custom-launcher {
-    color: #dcd4c5;
+    color: #c5d1dc;
     font-weight: 600;
-    background-color: #847047;
+    background-color: #476584;
     font-size: 14px;
     margin: 3px 0px;
     padding: 3px 7px;
-    border-radius: 10px;
+    border-radius: 0px;
     min-height: 0;
     transition: all 0.35s ease-in-out;
 }
 #custom-launcher:hover {
     background-color: #1e1e1e;
-    color: #dcd4c5;
+    color: #c5d1dc;
 }
 #tray {
     font-weight: 600;
-    background-color: #847047;
+    background-color: #476584;
     font-size: 13px;
     margin: 3px 0px;
     padding: 3px 7px;
-    border-radius: 10px;
+    border-radius: 0px;
     transition: all 0.35s ease-in-out;
 }
 #cava {
@@ -43,20 +43,20 @@ window#waybar {
 }
 #pulseaudio:hover {
     background-color: #1e1e1e;
-    color: #dcd4c5;
+    color: #c5d1dc;
 }
 #full_player {
     font-weight: 600;
-    background-color: #847047;
+    background-color: #476584;
     font-size: 13px;
     margin: 3px 0px;
     padding: 3px 7px;
-    border-radius: 10px;
+    border-radius: 0px;
     transition: all 0.35s ease-in-out;
 }
 #full_player:hover {
     background-color: #1e1e1e;
-    color: #dcd4c5;
+    color: #c5d1dc;
 }
 #pulseaudio.muted {
     color: #ff1e00;
@@ -66,23 +66,23 @@ window#waybar {
     background: #1e1e1e;
     margin: 3px 3px;
     padding: 3px 3px;
-    border-radius: 10px;
-    border: solid 0px #847047;
+    border-radius: 0px;
+    border: solid 0px #476584;
     font-weight: normal;
     font-style: normal;
 }
 #workspaces button {
     padding: 0px 3px;
     margin: 0px 2px;
-    border-radius: 10px;
-    color: #847047;
-    background-color: #847047;
+    border-radius: 0px;
+    color: #476584;
+    background-color: #476584;
     transition: all 0.35s ease-in-out;
 }
 #workspaces button.active {
-    color: #dcd4c5;
-    background-color: #dcd4c5;
-    border-radius: 5px;
+    color: #c5d1dc;
+    background-color: #c5d1dc;
+    border-radius: 0px;
     min-width: 24px;
     background-size: 400% 400%;
     transition: all 0.35s ease-in-out;
@@ -92,20 +92,20 @@ window#waybar {
 #battery,
 #clock {
     font-weight: 600;
-    background-color: #847047;
+    background-color: #476584;
     font-size: 13px;
     margin: 3px 0px;
     padding: 3px 7px;
-    border-radius: 10px;
+    border-radius: 0px;
     transition: all 0.35s ease-in-out;
 }
 #backlight:hover,
 #clock:hover {
     background-color: #1e1e1e;
-    color: #dcd4c5;
+    color: #c5d1dc;
 }
 #battery.warning {
-    color: #dcd4c5;
+    color: #c5d1dc;
     background-color: #fbde69;
 }
 #battery.critical {
@@ -113,7 +113,7 @@ window#waybar {
     background-color: #f55246;
 }
 #battery.charging {
-    color: #dcd4c5;
+    color: #c5d1dc;
     background-color: #68d36c;
     font-weight: bolder;
 }
@@ -122,12 +122,12 @@ window#waybar {
 /* ─────────────── CALENDAR TOOLTIP ─────────────── */
 tooltip {
     background: #1e1e1e;
-    border: 1px solid #847047;
-    border-radius: 10px;
+    border: 1px solid #476584;
+    border-radius: 0px;
     padding: 4px;
 }
 tooltip label {
-    color: #dcd4c5;
+    color: #c5d1dc;
     font-family: "Departure Mono Nerd Font", monospace;
     font-size: 12px;
 }

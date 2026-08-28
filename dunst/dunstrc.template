@@ -6,7 +6,7 @@
     origin = top-right
     offset = 10x50
     font = Departure Mono Nerd Font 10
-    corner_radius = 8
+    corner_radius = 0
 
 [urgency_low]
     background = "#060101"

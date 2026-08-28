@@ -1,7 +1,8 @@
 # Window
 background-opacity = 0.8
-window-decoration = true
-title = "Ghostty@CachyOS"
+window-decoration = false
+title = "Ze Ghost of Ze Blinkus of ze blonkus"
+confirm-close-surface = false
 
 # Scrollback
 scrollback-limit = 10000
@@ -19,31 +20,31 @@ mouse-hide-while-typing = true
 
 # Colors — injected by set-dynamic-theme.sh
 background = #1e1e1e
-foreground = #dcd4c5
-cursor-color = #dcd4c5
+foreground = #c5d1dc
+cursor-color = #c5d1dc
 cursor-text = #1e1e1e
-selection-background = #847047
+selection-background = #476584
 selection-foreground = #1e1e1e
 
 # Palette (normal colors 0–7)
 palette = 0=#1e1e1e
 palette = 1=BF616A
 palette = 2=A3BE8C
-palette = 3=#847047
-palette = 4=#847047
-palette = 5=#847047
-palette = 6=#dcd4c5
-palette = 7=#dcd4c5
+palette = 3=#476584
+palette = 4=#476584
+palette = 5=#476584
+palette = 6=#c5d1dc
+palette = 7=#c5d1dc
 
 # Palette (bright colors 8–15)
-palette = 8=#847047
+palette = 8=#476584
 palette = 9=BF616A
 palette = 10=A3BE8C
-palette = 11=#dcd4c5
-palette = 12=#dcd4c5
-palette = 13=#dcd4c5
-palette = 14=#dcd4c5
-palette = 15=#dcd4c5
+palette = 11=#c5d1dc
+palette = 12=#c5d1dc
+palette = 13=#c5d1dc
+palette = 14=#c5d1dc
+palette = 15=#c5d1dc
 
 # Keybinds
 keybind = ctrl+shift+c=copy_to_clipboard
@@ -53,3 +54,4 @@ keybind = shift+page_up=scroll_page_up
 keybind = shift+page_down=scroll_page_down
 keybind = shift+home=scroll_to_top
 keybind = shift+end=scroll_to_bottom
+
