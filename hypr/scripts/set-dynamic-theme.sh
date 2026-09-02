@@ -284,6 +284,7 @@ TokyoGhoul*) ascii_file="$ASCII_DIR/tg.txt" ;;
 VinlandSaga*) ascii_file="$ASCII_DIR/thorfinn.txt" ;;
 TLoZ*) ascii_file="$ASCII_DIR/triforce.txt" ;;
 CowboyBebop*) ascii_file="$ASCII_DIR/cowboy.txt" ;;
+Persona*) ascii_file="$ASCII_DIR/persona.txt" ;;
 *) ascii_file="$ASCII_DIR/cat.txt" ;;
 esac
 

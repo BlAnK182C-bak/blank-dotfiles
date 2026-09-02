@@ -24,7 +24,7 @@
   ],
   "logo": {
     "type": "file",
-    "source": "/home/abhinavks/.config/fastfetch/ascii-arts/nezuko.txt",
+    "source": "/home/abhinavks/.config/fastfetch/ascii-arts/cat.txt",
     "width": 1,
     "height": 1,
     "padding": {
@@ -32,15 +32,15 @@
       "left": 0
     },
     "color": {
-      "1": "#c5d1dc",
-      "2": "#476584"
+      "1": "#c5d8dc",
+      "2": "#477a84"
     }
   },
   "display": {
     "separator": ": ",
     "color": {
-      "keys": "#476584",
-      "title": "#c5d1dc"
+      "keys": "#477a84",
+      "title": "#c5d8dc"
     },
     "key": {
       "width": 12,
@@ -56,7 +56,7 @@
     "percent": {
       "type": 2,
       "color": {
-        "green": "#c5d1dc",
+        "green": "#c5d8dc",
         "yellow": "#ffff00",
         "red": "#ff1e00"
       }

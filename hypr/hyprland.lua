@@ -110,6 +110,11 @@ local menu = "rofi -show drun"
 hl.env("XCURSOR_SIZE", "21")
 hl.env("HYPRCURSOR_SIZE", "21")
 
+-- Nvidia gaming/Wayland env vars
+hl.env("NVD_BACKEND", "direct")
+hl.env("__GL_GSYNC_ALLOWED", "1")
+hl.env("__GL_VRR_ALLOWED", "1")
+
 --##################
 --## PERMISSIONS ###
 --##################
@@ -273,6 +278,33 @@ hl.window_rule({
 	no_focus = true,
 })
 
+-- ############
+-- ## GAMING ##
+-- ############
+-- Tag Steam/Proton games as "game" content, then apply tearing,
+-- no animations, and cursor confinement only to fullscreen game content.
+-- See https://wiki.hypr.land/Configuring/Advanced-and-Cool/Tearing/
+-- and https://wiki.hypr.land/FAQ/ (confine_pointer)
+
+hl.window_rule({
+	name = "steam-games-content",
+	match = { class = "^(steam_app_.*)$" },
+	content = "game",
+})
+
+hl.window_rule({
+	name = "game-tearing",
+	match = { content = "game", fullscreen = true },
+	immediate = true,
+	no_anim = true,
+})
+
+hl.window_rule({
+	name = "game-cursor-confine",
+	match = { content = "game", fullscreen = true },
+	confine_pointer = true,
+})
+
 hl.device({
 	name = "epic-mouse-v1",
 	sensitivity = -0.7,
@@ -387,7 +419,8 @@ hl.config({
 		-- Set to true enable resizing windows by clicking and dragging on borders and gaps
 		resize_on_border = false,
 		-- Please see https://wiki.hyprland.org/Configuring/Tearing/ before you turn this on
-		allow_tearing = false,
+		-- Master toggle: required for the "immediate" game-tearing window rule above to have any effect
+		allow_tearing = true,
 		layout = "dwindle",
 	},
 	-- https://wiki.hyprland.org/Configuring/Variables/#decoration
@@ -411,6 +444,11 @@ hl.config({
 			vibrancy = 0.14,
 		},
 	},
+	-- Lets fullscreen windows (e.g. games) bypass compositing and scan out directly
+	-- to the display when nothing else needs to be drawn on top.
+	render = {
+		direct_scanout = true,
+	},
 	-- https://wiki.hyprland.org/Configuring/Variables/#animations
 	animations = {
 		enabled = true,
@@ -432,6 +470,12 @@ hl.config({
 	misc = {
 		force_default_wallpaper = 0, -- Set to 0 or 1 to disable the anime mascot wallpapers
 		disable_hyprland_logo = true, -- If true disables the random hyprland logo / anime girl background. :(
+		vrr = 1, -- Variable refresh rate: 1 = always on, 2 = fullscreen only, 0 = off
+	},
+	-- vfr moved here in Hyprland 0.55 (breaking change): it's a debug-only
+	-- variable now and should not be changed under misc anymore.
+	debug = {
+		vfr = true, -- don't render frames when nothing changes, saves power/heat
 	},
 	--############
 	--## INPUT ###
